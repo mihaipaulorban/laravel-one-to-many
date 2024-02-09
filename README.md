@@ -19,8 +19,8 @@ La funzionalità principale consente agli utenti di:
 C'è anche un cursore personalizzato che cambia passando con il mouse su un'attività:
 
 Il cursore é caratterizzato da una bolla che segue una pallina piccola, e da un'animazione che si muove con il mouse:
-![follow](@readme-img/follow.png) ![cursor-static](@readme-img/cursor-static.png)
+![follow](follow.png) ![cursor-static](cursor-static.png)
 
 On hover invece, su link e button la bolla si gonfierá, sempre con un'animazione, c'é tra l'altro un effetto di inversione dei colori per non compromettere la leggibilitá:
 
-![on-hover](@readme-img/on-hover.png)
+![on-hover](on-hover.png)
