@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    <!-- Token CSRF -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <!-- Fonts -->
+    <!-- Font -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -22,39 +22,39 @@
 <body>
     <div id="app">
 
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center hoverable" href="{{ url('/') }}">
                     <div class="logo_laravel">
                         <h1>BOOLFOLIO</h1>
                     </div>
-                    {{-- config('app.name', 'Laravel') --}}
                 </a>
 
                 <button class="navbar-toggler hoverable" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    aria-expanded="false" aria-label="{{ __('Apri navigazione') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Parte sinistra Navbar -->
+                    <!-- Lato sinistro della barra di navigazione -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link hoverable" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                     </ul>
 
-                    <!-- Parte destra Navbar -->
+                    <!-- Lato destro della barra di navigazione -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Link per l'auth -->
+                        <!-- Link di autenticazione -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link hoverable" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link hoverable" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link hoverable" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -71,7 +71,7 @@
                                     <a class="dropdown-item hoverable" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Esci') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -88,9 +88,7 @@
         <main class="">
             @yield('content')
         </main>
-
     </div>
-
     {{-- Div del cursore personalizzato --}}
     <div class="cursor">
         <div class="cursor__ball cursor__ball--big">
@@ -105,7 +103,6 @@
             </svg>
         </div>
     </div>
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </body>
 
 </html>

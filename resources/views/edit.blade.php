@@ -28,7 +28,7 @@
                 </select>
             </div>
             
-            <button type="submit" class="btn btn-primary">Aggiorna</button>
+            <button type="submit" class="btn btn-primary hoverable">Aggiorna</button>
         </form>
     </div>
 @endsection

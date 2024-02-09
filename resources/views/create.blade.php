@@ -27,7 +27,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-success">Crea</button>
+            <button type="submit" class="btn btn-success hoverable">Crea</button>
         </form>
     </div>
 @endsection
