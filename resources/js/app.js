@@ -44,7 +44,8 @@ function onMouseMove(e) {
 
 // Funzione per aggiornare la posizione del cursore
 function updateCursor() {
-    gsap.to($bigBall, { duration: 0.4, x: mouseX, y: mouseY });
+    // Modifica i valori di bigBall per cambiare la posizione della palla grande
+    gsap.to($bigBall, { duration: 0.4, x: mouseX - 10, y: mouseY - 1 });
     gsap.to($smallBall, { duration: 0.1, x: mouseX, y: mouseY });
 }
 
