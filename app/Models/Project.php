@@ -9,12 +9,14 @@ class Project extends Model
 {
     use HasFactory;
 
+    // Definisce le colonne che possono essere assegnate di massa
     protected $fillable = [
         'title',
         'description',
         'type_id',
     ];
 
+    // Restituisce il tipo associato al progetto
     public function type()
     {
         return $this->belongsTo(Type::class);

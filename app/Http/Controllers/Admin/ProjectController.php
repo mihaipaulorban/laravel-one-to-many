@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    // Mostra tutti i progetti
     public function index()
     {
         $projects = Project::all();
@@ -19,57 +18,40 @@ class ProjectController extends Controller
         return view('admin', ['projects' => $projects]);
     }
 
-    // Metodo Create
+    // Mostra la vista per creare un nuovo progetto
     public function create()
     {
-        //Ottiene tutti i tipi
+        // Recupera tutti i tipi
         $types = Type::all();
         return view('create', compact('types'));
     }
 
-
-    // Metodo Store
+    // Salva un nuovo progetto
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
             'type_id' => 'nullable|exists:types,id',
-
         ]);
 
         $project = Project::create($validatedData);
-        $project = new Project();
-        $project->title = $request->title;
-        $project->description = $request->description;
 
-        $project->save();
-
-        // Allert per la creazione con successo
         session()->flash('success', 'Progetto creato con successo!');
 
+        // Reindirizza alla lista progetti
         return redirect()->route('admin.projects.index')->with('created', 'Progetto creato con successo!');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    // Metodo Edit
+    // Mostra la vista per modificare un progetto
     public function edit(Project $project)
     {
-        // Ottiene tutti i tipi
         $types = Type::all();
+
         return view('edit', compact('project', 'types'));
     }
 
-
-    // Metodo Update
+    // Aggiorna un progetto esistente
     public function update(Request $request, Project $project)
     {
         $validatedData = $request->validate([
@@ -79,23 +61,21 @@ class ProjectController extends Controller
         ]);
 
         $project->update($validatedData);
-        $project->title = $request->title;
-        $project->description = $request->description;
 
-        $project->save();
+        session()->flash('success', 'Progetto aggiornato con successo!');
 
-        // Imposta un messaggio flash per l'aggiornamento con successo
-        return redirect()->route('admin.projects.index')->with('updated', 'Progetto aggiornato con successo.');
+        // Reindirizza alla lista progetti
+        return redirect()->route('admin.projects.index');
     }
-    // Rotta per eliminare un progetto
-    public function destroy($id)
+
+    // Elimina un progetto
+    public function destroy(Project $project)
     {
-        $project = Project::findOrFail($id);
         $project->delete();
 
-        // Messaggio per l'eliminazione
-        session()->flash('deleted', 'Progetto eliminato con successo.');
+        session()->flash('success', 'Progetto eliminato con successo!');
 
+        // Reindirizza alla lista progetti
         return redirect()->route('projects.index');
     }
 }
