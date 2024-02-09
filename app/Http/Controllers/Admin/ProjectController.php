@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -22,19 +22,23 @@ class ProjectController extends Controller
     // Metodo Create
     public function create()
     {
-        return view('create');
+        //Ottiene tutti i tipi
+        $types = Type::all();
+        return view('create', compact('types'));
     }
 
 
     // Metodo Store
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+            'type_id' => 'nullable|exists:types,id',
 
         ]);
 
+        $project = Project::create($validatedData);
         $project = new Project();
         $project->title = $request->title;
         $project->description = $request->description;
@@ -59,18 +63,22 @@ class ProjectController extends Controller
     // Metodo Edit
     public function edit(Project $project)
     {
-        return view('edit', compact('project'));
+        // Ottiene tutti i tipi
+        $types = Type::all();
+        return view('edit', compact('project', 'types'));
     }
 
 
     // Metodo Update
     public function update(Request $request, Project $project)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+            'type_id' => 'nullable|exists:types,id',
         ]);
 
+        $project->update($validatedData);
         $project->title = $request->title;
         $project->description = $request->description;
 

@@ -14,6 +14,18 @@
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
+            {{-- Selezione del tipo --}}
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Tipo di Progetto</label>
+                <select class="form-control" id="type_id" name="type_id">
+                    <option value="">Seleziona un tipo</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ (isset($project) && $project->type_id == $type->id) ? 'selected' : '' }}>
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             <button type="submit" class="btn btn-success">Crea</button>
         </form>

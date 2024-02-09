@@ -10,6 +10,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Descrizione</th>
+                    <th>Tipo</th>
                     @if (session('created'))
                         <div class="alert alert-success">
                             {{ session('created') }}
@@ -39,11 +40,13 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->description }}</td>
+                        <td>{{ $project->type->name ?? 'Nessun tipo' }}</td>
                         <td>
                             {{-- Pulsante "Modifica" --}}
                             <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-primary">Modifica</a>
                         </td>
                         <td>
+                            {{-- Pulsante "Elimina" --}}
                             <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
